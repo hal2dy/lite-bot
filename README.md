@@ -4,7 +4,7 @@
 
 ### Using serverless
 
-1. Install [serverless](<(https://www.google.com)>) `npm install -g serverless`
+1. Install [serverless](https://www.google.com) `npm install -g serverless`
 2. Run `serverless deploy -v`
 
 ### Using Up

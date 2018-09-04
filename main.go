@@ -78,8 +78,8 @@ func ActionHelp() map[string]interface{} {
 	msg["text"] = "*Lite bot Supported command*:\n" +
 		"`help`: view this help `/lite help`\n" +
 		"`build`: Build Lite to instance. `/lite build sg en 10000 primary`\n" +
-		"> first 3 params is mandatory: *country, language, instance number without SHOP*\n" +
-		"> last params is optional: *primary|secondary* for multi-language venter"
+		"> First 3 params is mandatory: *country, language, instance number without SHOP*\n" +
+		"> Last params is optional : *primary|secondary* for multi-languages venture (default=primary)"
 
 	return msg
 }
@@ -92,8 +92,8 @@ func ActionBuild(slackData SlackData, command []string) map[string]interface{} {
 		return msg
 	}
 
-	secret := ""
-	webHook := "https://webhook.io:8084/webhooks/"
+	secret := "secret"
+	webHook := "https://zalora.io:8084/webhooks/webhook/lite"
 
 	parameters := make(map[string]string)
 	parameters["country"] = command[1]

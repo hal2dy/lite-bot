@@ -26,7 +26,7 @@
 
 ### Grant internet access to VPC Lambda function
 
-(follow tutorial video of Kien at [aws document](https://aws.amazon.com/premiumsupport/knowledge-center/internet-access-lambda-function/))
+(follow tutorial [video](https://youtu.be/JcRKdEP94jM) by Kien at [aws document](https://aws.amazon.com/premiumsupport/knowledge-center/internet-access-lambda-function/))
 
 1. Best practise is create 2 seperate subnet for public and private-lambda function
 2. Create NAT Gateway

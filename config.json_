@@ -1,4 +1,0 @@
-{
-  "Secret": "secret",
-  "WebHook": "https://litbot.io:8084/webhooks/build"
-}

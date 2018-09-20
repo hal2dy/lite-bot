@@ -1,5 +1,5 @@
 build:
-	env GOOS=linux go build -ldflags="-s -w" -o bin/litebot main.go
+	env GOOS=linux go build -ldflags="-s -w" -o bin/litebot main.go action.go
 
 .PHONY: clean
 clean:

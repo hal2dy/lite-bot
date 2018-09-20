@@ -23,3 +23,14 @@
 7. `Deploy API` for Api gateway: named `dev`, then click `Deploy`. Now the Invoke URL is created `https://xxxxxx.execute-api.ap-southeast-1.amazonaws.com/dev`
 8. Config Invoke URL to Slack
 9. Done
+
+### Grant internet access to VPC Lambda function
+
+(follow tutorial video of Kien at [aws document](https://aws.amazon.com/premiumsupport/knowledge-center/internet-access-lambda-function/))
+
+1. Best practise is create 2 seperate subnet for public and private-lambda function
+2. Create NAT Gateway
+3. Bind the NAT Gateway with the internet-subnet through Route gateway: set 0.0.0.0/0 - nat-...
+4. Create Internet Gateway (if not existed)
+5. Bind the Internet Gateway with the external-subnet through Route gateway: set 0.0.0.0/0 - igw-...
+6. Go to lambda function console, choose VPC, `only` select the internal subnets, and security group. Remember to check if the security group is allowed outbound connection

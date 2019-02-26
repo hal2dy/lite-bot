@@ -23,17 +23,15 @@ type BotData struct {
 }
 
 // ParseBotData is to parse request from Slack slash command
-func ParseBotData(req string) BotData {
-	var BotData BotData
-
+func ParseBotData(req string) (result BotData) {
 	parseQuery, _ := url.ParseQuery(req)
 	// convert map Token=[xxx] to Token=xxx
-	m := make(map[string]string)
+	normalizeParseQuery := make(map[string]string)
 	for k, v := range parseQuery {
-		m[k] = v[0]
+		normalizeParseQuery[k] = v[0]
 	}
 
-	jsonString, _ := json.Marshal(m)
-	json.Unmarshal([]byte(jsonString), &BotData)
-	return BotData
+	jsonString, _ := json.Marshal(normalizeParseQuery)
+	json.Unmarshal([]byte(jsonString), &result)
+	return result
 }

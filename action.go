@@ -9,14 +9,14 @@ import (
 
 // ActionHelp will return result text of help command
 func ActionHelp() string {
-	return "_Lite bot Supported command_:\n" +
-		"*help*: view this help `/lite help`\n" +
-		"*build*: `/lite build instance-number [language-option] [code-branch] [venture]`\n" +
-		"> - language-option has 2 option: primary|secondary, default is _primary_\n" +
-		"> - code-branch is the branch in code base that use to build, default is _master_\n" +
-		"> - venture if not provided will auto choose current venture of the _instance_\n" +
+	return "`/lite build [instance-number] [code-branch] [venture] [language-option]`\n" +
+		"> *instance-number* (madatory): SHOP instance number without SHOP- \n" +
+		"> *code-branch* (optional): code branch that use to build, default is _master_\n" +
+		"> *venture* (optional): auto choose current venture of the _instance_ if not provided\n" +
+		"> *language-option* (optional): primary|secondary, default is _primary_\n" +
+		"Example:\n" +
 		"> `/lite build 15204` - Build Lite for instance _15204_\n" +
-		"> `/lite build 15204 secondary master sg` -  Build Lite for instance _15204_ with _secondary_ language option using _master_ branch on Lite code base and build for _sg_ venture"
+		"> `/lite build 15204 master sg secondary` -  Build Lite for instance _15204_ using _master_ branch code base for _sg_ venture as _secondary_ language"
 }
 
 func connected() string {
@@ -29,8 +29,8 @@ func connected() string {
 
 // ActionBuild will return result text of build command
 func ActionBuild(botData utils.BotData, commands []string) string {
-	secret := "some-secret"
-	webHook := "https://zalora.io/webhooks/"
+	secret := "xxx"
+	webHook := "https://spinnaker.xxx.zalora.io:8084/webhooks/"
 
 	params := parseParams(commands)
 
@@ -55,7 +55,7 @@ func ActionBuild(botData utils.BotData, commands []string) string {
 	}
 
 	return fmt.Sprintf(
-		`We got your request to build Lite on *SHOP-%s*, we will get back to you :wave:`,
+		`Receive your request to build Lite on *SHOP-%s*, will get back to you :wave:`,
 		params["instance"])
 }
 
@@ -67,19 +67,19 @@ func parseParams(commands []string) map[string]string {
 		params["instance"] = ""
 	}
 	if len(commands) > 1 {
-		params["option"] = commands[1]
-	} else {
-		params["option"] = "primary"
-	}
-	if len(commands) > 2 {
-		params["branch"] = commands[2]
+		params["branch"] = commands[1]
 	} else {
 		params["branch"] = "master"
 	}
-	if len(commands) > 3 {
-		params["country"] = commands[3]
+	if len(commands) > 2 {
+		params["country"] = commands[2]
 	} else {
 		params["country"] = ""
+	}
+	if len(commands) > 3 {
+		params["option"] = commands[3]
+	} else {
+		params["option"] = "primary"
 	}
 	return params
 }

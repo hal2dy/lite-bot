@@ -1,10 +1,10 @@
+
 build:
 	env GOOS=linux go build -ldflags="-s -w" -o bin/litebot main.go action.go
+	zip -r -j -D bin/litebot.zip bin/litebot
 
-.PHONY: clean
 clean:
 	rm -rf ./bin
 
-.PHONY: deploy
 deploy: clean build
 	sls deploy --verbose

@@ -80,7 +80,9 @@ func GetLanguageFromVenture(venture string, languageOption string) string {
 // GetInstanceVenture return venture of the given instance
 func GetInstanceVenture(instanceNumber string) string {
 	venture := ""
-	resp, err := http.Get(fmt.Sprintf(`http://alice.%s.shop.zalora.io/`, instanceNumber))
+	urlPattern := "%s.zalora.com"
+	resp, err := http.Get(fmt.Sprintf(urlPattern, instanceNumber))
+
 
 	if err == nil {
 		defer resp.Body.Close()

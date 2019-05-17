@@ -83,6 +83,7 @@ func GetInstanceVenture(instanceNumber string) string {
 	urlPattern := "%s.zalora.com"
 	resp, err := http.Get(fmt.Sprintf(urlPattern, instanceNumber))
 
+
 	if err == nil {
 		defer resp.Body.Close()
 		if title, ok := getHTMLTitle(resp.Body); ok {

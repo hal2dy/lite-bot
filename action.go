@@ -30,7 +30,7 @@ func connected() string {
 // ActionBuild will return result text of build command
 func ActionBuild(botData utils.BotData, commands []string) string {
 	secret := "xxx"
-	webHook := "https://spinnaker.xxx.zalora.io:8084/webhooks/"
+	webHook := "https://spinnaker.xxx.io:8084/webhooks/"
 
 	params := parseParams(commands)
 

@@ -36,22 +36,22 @@ func getHTMLTitle(r io.Reader) (string, bool) {
 }
 
 func getVenture(title string) string {
-	if strings.Contains(title, "ZALORA Singapore") {
+	if strings.Contains(title, "Z Singapore") {
 		return "sg"
 	}
-	if strings.Contains(title, "ZALORA Malaysia") {
+	if strings.Contains(title, "Z Malaysia") {
 		return "my"
 	}
-	if strings.Contains(title, "ZALORA Indonesia") {
+	if strings.Contains(title, "Z Indonesia") {
 		return "id"
 	}
-	if strings.Contains(title, "ZALORA Philippines") {
+	if strings.Contains(title, "Z Philippines") {
 		return "ph"
 	}
-	if strings.Contains(title, "ZALORA臺灣") {
+	if strings.Contains(title, "Z臺灣") {
 		return "tw"
 	}
-	if strings.Contains(title, "ZALORA香港") || strings.Contains(title, "ZALORA Hong Kong") {
+	if strings.Contains(title, "Z香港") || strings.Contains(title, "Z Hong Kong") {
 		return "hk"
 	}
 	return "sg"
@@ -80,7 +80,7 @@ func GetLanguageFromVenture(venture string, languageOption string) string {
 // GetInstanceVenture return venture of the given instance
 func GetInstanceVenture(instanceNumber string) string {
 	venture := ""
-	resp, err := http.Get(fmt.Sprintf(`http://alice.%s.shop.zalora.io/`, instanceNumber))
+	resp, err := http.Get(fmt.Sprintf(`http://alice.%s.z.io/`, instanceNumber))
 
 	if err == nil {
 		defer resp.Body.Close()

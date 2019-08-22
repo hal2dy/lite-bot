@@ -3,14 +3,14 @@ package utils
 import "testing"
 
 func TestGetVentureTW(t *testing.T) {
-	result := getVenture("ZALORA臺灣")
+	result := getVenture("Z臺灣")
 	if result != "tw" {
 		t.Error("Expected venture is tw, got ", result)
 	}
 }
 
 func TestGetVentureHK(t *testing.T) {
-	result := getVenture("ZALORA Hong Kong")
+	result := getVenture("Z Hong Kong")
 	if result != "hk" {
 		t.Error("Expected venture is hk, got ", result)
 	}

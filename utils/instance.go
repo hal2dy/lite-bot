@@ -9,6 +9,8 @@ import (
 	"golang.org/x/net/html"
 )
 
+const instanceURLFormat = "http://instance-url.%s.com"
+
 func isTitleElement(n *html.Node) bool {
 	return n.Type == html.ElementNode && n.Data == "title"
 }
@@ -36,22 +38,22 @@ func getHTMLTitle(r io.Reader) (string, bool) {
 }
 
 func getVenture(title string) string {
-	if strings.Contains(title, "ZALORA Singapore") {
+	if strings.Contains(title, "Singapore") {
 		return "sg"
 	}
-	if strings.Contains(title, "ZALORA Malaysia") {
+	if strings.Contains(title, "Malaysia") {
 		return "my"
 	}
-	if strings.Contains(title, "ZALORA Indonesia") {
+	if strings.Contains(title, "Indonesia") {
 		return "id"
 	}
-	if strings.Contains(title, "ZALORA Philippines") {
+	if strings.Contains(title, "Philippines") {
 		return "ph"
 	}
-	if strings.Contains(title, "ZALORA臺灣") {
+	if strings.Contains(title, "臺灣") {
 		return "tw"
 	}
-	if strings.Contains(title, "ZALORA香港") || strings.Contains(title, "ZALORA Hong Kong") {
+	if strings.Contains(title, "香港") || strings.Contains(title, "Hong Kong") {
 		return "hk"
 	}
 	return "sg"
@@ -80,7 +82,7 @@ func GetLanguageFromVenture(venture string, languageOption string) string {
 // GetInstanceVenture return venture of the given instance
 func GetInstanceVenture(instanceNumber string) string {
 	venture := ""
-	resp, err := http.Get(fmt.Sprintf(`http://alice.%s.shop.zalora.io/`, instanceNumber))
+	resp, err := http.Get(fmt.Sprintf(instanceURLFormat, instanceNumber))
 
 	if err == nil {
 		defer resp.Body.Close()

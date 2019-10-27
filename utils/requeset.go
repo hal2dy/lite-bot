@@ -14,6 +14,15 @@ import (
 // https://serverless.com/framework/docs/providers/aws/events/apigateway/#lambda-proxy-integration
 type Response events.APIGatewayProxyResponse
 
+// BuildCommandData is data that need to trigger build
+type BuildCommandData struct {
+	Secret     string            `json:"secret"`
+	Team       string            `json:"team"`
+	Command    string            `json:"command"`
+	UserName   string            `json:"username"`
+	Parameters map[string]string `json:"parameters"`
+}
+
 // MakeResponse reponse the bot requeset
 func MakeResponse(status int, response string) Response {
 	var buf bytes.Buffer
@@ -30,8 +39,8 @@ func MakeResponse(status int, response string) Response {
 }
 
 // Post a request to url endpoint with provided body data
-func Post(url string, body map[string]interface{}) string {
-	bodyJSON, _ := json.Marshal(body)
+func Post(url string, data BuildCommandData) string {
+	bodyJSON, _ := json.Marshal(data)
 	req, _ := http.NewRequest("POST", url, bytes.NewBuffer(bodyJSON))
 	req.Header.Set("Content-Type", "application/json")
 	client := &http.Client{}

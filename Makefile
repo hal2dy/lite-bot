@@ -1,6 +1,8 @@
+.PHONY: config build clean deploy
 
 build:
-	env GOOS=linux go build -ldflags="-s -w" -o bin/litebot main.go action.go
+	mkdir -p bin 
+	env GOOS=linux go build -ldflags="-s -w" -o bin/litebot main.go
 	zip -r -j -D bin/litebot.zip bin/litebot
 
 clean:
